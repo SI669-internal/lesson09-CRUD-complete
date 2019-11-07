@@ -7,16 +7,7 @@ import '@firebase/firestore';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAOFAGqFifSkvI4jRvR8Nq3Dus2JAyvPfQ",
-  authDomain: "lesson07-firebasedemo.firebaseapp.com",
-  databaseURL: "https://lesson07-firebasedemo.firebaseio.com",
-  projectId: "lesson07-firebasedemo",
-  storageBucket: "lesson07-firebasedemo.appspot.com",
-  messagingSenderId: "1085673325819",
-  appId: "1:1085673325819:web:9f32eac784f4117e825c5e"
-};
+import { firebaseConfig } from './FirebaseConfig';
 
 function deleteFromListByKey(list, key) {
   for (let i = 0; i < list.length; i++) { // look for the match
@@ -67,7 +58,7 @@ class ListItem extends React.Component {
           <TouchableOpacity
             onPress={() => {this.handleUpdate();}}
             style={styles.button}>
-            <Text style={styles.buttonText}s>Update</Text>
+            <Text style={styles.buttonText}>Update</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {this.handleDelete();}}
@@ -114,7 +105,7 @@ export class HomeScreen extends React.Component {
     let newItem = {text: this.state.inputText};
     this.itemsRef.add(newItem).then(doc => {
       newItem.key = doc.id;
-      let tempList = this.state.theList.slice(); // clone
+      let tempList = this.state.theList.slice();
       tempList.push(newItem);
       this.setState({
         theList: tempList,
